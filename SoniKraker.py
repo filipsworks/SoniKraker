@@ -17,7 +17,7 @@ def int_to_colon_hex(integer, bytes_reversed=None):
         hex_values = hex_string.split(":")
         reversed_hex_values = hex_values[::-1]
         hex_string = ":".join(reversed_hex_values)
-    return hex_string
+    return hex_string.upper()
 
 def tries_left_to_seconds_used(tries):
     initial_tries = 180
@@ -33,4 +33,4 @@ seconds_used = f"{time_left}:02:00" # 0 sec
 pwd = CRC16(0x49A3, nfctag_uid.copy())
 pwd = pwd | (CRC16(pwd, list(nfc_mfg)) << 16)
 pwd = (pwd >> 8) & 0x00FF00FF | (pwd << 8) & 0xFF00FF00
-print(f"SoniKraker CMD: 1B:{int_to_colon_hex(pwd).upper()},A2:24:{seconds_used}")
+print(f"SoniKraker CMD: 1B:{int_to_colon_hex(pwd)},A2:24:{seconds_used}")
