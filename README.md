@@ -20,4 +20,4 @@ Just run the python script
 
 ## Known issues
 1. NFC rejects the connection -> either UID/MFG were provided incorrectly or You've exceeded the number of tries providing the bad password and now even the correct one won't work.
-2. Sonicare app is showing old number of tries / it rewrites the memory with the old adddres -> Click show my brush heads link on the top of the screen where unfinished sessions counter is displayed, remove the brush head from the brush base and click on the brush info in app, then delete the brush head from app, close the app, reexecute the SoniKraker CMD, connect the brush head and run the app.
+2. Sonicare app is showing old number of sessions / it rewrites the memory with the old data -> Click show my brush heads link on the top of the screen where unfinished sessions counter is displayed, remove the brush head from the brush base and click on the brush info in app, then delete the brush head from app, close the app, reexecute the SoniKraker CMD, connect the brush head and run the app.
