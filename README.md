@@ -1,7 +1,7 @@
 # SoniKraker
 Sonicare brush head nfc pwd cracker and # sessions left nfc cmd generator
 
-Basically a python reimplementation of https://gist.github.com/atc1441/41af75048e4c22af1f5f0d4c1d94bb56
+Basically a python reimplementation of https://gist.github.com/atc1441/41af75048e4c22af1f5f0d4c1d94bb56 with some extra meat
 
 ## Usage
 **Beware - You have only 3 tries until the NFC chip in the brush head will lock itself for writing even when using the correct password on subsequent tries. So be extra cautious while entering the UID and MFG**
