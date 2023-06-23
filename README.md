@@ -1,4 +1,6 @@
 # SoniKraker
+![SoniKraker](https://github.com/filipsworks/SoniKraker/assets/47939098/4e77b4be-fa3b-431e-9bb0-801b8e9ca279)
+
 Sonicare brush head nfc pwd cracker and # sessions left nfc cmd generator
 
 Basically a python reimplementation of https://gist.github.com/atc1441/41af75048e4c22af1f5f0d4c1d94bb56 with some extra meat
@@ -10,8 +12,11 @@ Just run the python script
 
 1. Input the NFC tag serial number (You can ommit : separation)
 2. Input MFG code printed on the bottom of the brushing head (including space and letter)
-3. Input the number of sessions You want to have left on the brush head
+3. Input the number of sessions You want to have left on the brush head (or set it to 180 by pressing enter)
 4. Copy SoniKraker CMD value and run it as advanced NFC command
+
+![4](https://github.com/filipsworks/SoniKraker/assets/47939098/35d49395-d859-49b5-b38b-bb0d8801c92e)
+
 
 ## Known issues
 1. NFC rejects the connection -> either UID/MFG were provided incorrectly or You've exceeded the number of tries providing the bad password and now even the correct one won't work.
