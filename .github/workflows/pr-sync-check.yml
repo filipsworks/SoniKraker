@@ -13,7 +13,7 @@ jobs:
           echo "PR Number: ${{ github.event.pull_request.number }}"
 
       - name: Checkout the PR branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0  # Fetch full history for the PR branch
