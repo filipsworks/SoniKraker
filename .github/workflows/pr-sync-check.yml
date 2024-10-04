@@ -7,20 +7,25 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Get PR info
+        run: |
+          echo "PR Title: ${{ github.event.pull_request.title }}"
+          echo "PR Number: ${{ github.event.pull_request.number }}"
+
       - name: Checkout the PR branch
         uses: actions/checkout@v3
         with:
+          ref: ${{ github.head_ref }}
           fetch-depth: 0  # Fetch full history for the PR branch
       
       - name: Fetch the target (base) branch
         run: |
           git fetch origin ${{ github.event.pull_request.base.ref }}:${{ github.event.pull_request.base.ref }}  # Ensure the target branch is fetched and tracked locally
+
       - name: Check if PR branch is synchronized with target branch
         run: |
           BASE_BRANCH=${{ github.event.pull_request.base.ref }}
-          if ! git merge-base --is-ancestor $BASE_BRANCH HEAD; then
-            echo "::error::The PR branch is not synchronized with the target branch (${BASE_BRANCH}). Please rebase or merge the latest changes from ${BASE_BRANCH}."
-            exit 1
-          else
-            echo "The PR branch is up-to-date with the target branch (${BASE_BRANCH})."
-          fi
+          # Using merge-base to check if the target branch is an ancestor of the PR branch
+          git merge-base --is-ancestor $BASE_BRANCH HEAD && \
+          echo "The PR branch is up-to-date with the target branch (${BASE_BRANCH})." || \
+          (echo "::error::The PR branch is not synchronized with the target branch (${BASE_BRANCH}). Please rebase or merge the latest changes from ${BASE_BRANCH}." && exit 1)
