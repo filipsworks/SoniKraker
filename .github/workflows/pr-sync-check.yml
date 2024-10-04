@@ -7,23 +7,24 @@ on:
 jobs:
   check-sync:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout the PR branch
         uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.ref }}
-
+          fetch-depth: 0  # Fetch all history for the PR branch - required for ancestry check
+      
       - name: Fetch target (base) branch
         run: |
-          git fetch origin ${{ github.event.pull_request.base.ref }}:${{ github.event.pull_request.base.ref }}
+          git fetch origin ${{ github.event.pull_request.base.ref }} --depth=0  # Fetch all history for the target branch
 
       - name: Check if PR branch is synchronized with target branch
         run: |
           BASE_BRANCH=${{ github.event.pull_request.base.ref }}
           if ! git merge-base --is-ancestor $BASE_BRANCH HEAD; then
             echo "::error::The PR branch is not synchronized with the target branch (${BASE_BRANCH}). Please rebase or merge the latest changes from ${BASE_BRANCH}."
-            exit 1  # This will cause the workflow to fail and block the PR
+            exit 1
           else
             echo "The PR branch is up-to-date with the target branch (${BASE_BRANCH})."
           fi
