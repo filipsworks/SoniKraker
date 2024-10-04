@@ -12,12 +12,11 @@ jobs:
       - name: Checkout the PR branch
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0  # Fetch all history for the PR branch - required for ancestry check
+          fetch-depth: 0  # Fetch full history for the PR branch
       
-      - name: Fetch target (base) branch
+      - name: Fetch the target (base) branch
         run: |
-          git fetch origin ${{ github.event.pull_request.base.ref }}
+          git fetch origin ${{ github.event.pull_request.base.ref }}:${{ github.event.pull_request.base.ref }}  # Ensure the target branch is fetched and tracked locally
 
       - name: Check if PR branch is synchronized with target branch
         run: |
